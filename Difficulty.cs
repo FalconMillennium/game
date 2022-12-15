@@ -6,7 +6,7 @@ public class Difficulty : Game
     public static float DifficultyModPlayer { get; private set; }
     public static float DifficultyModEnemy { get; private set; }
 
-    public float DiffModPlayer(int DifficultyLevel)
+    public static float DiffModPlayer(int DifficultyLevel)
     {
         DifficultyModPlayer = DifficultyLevel switch
         {
@@ -22,7 +22,7 @@ public class Difficulty : Game
         DifficultyMenu menu = new();
         menu.ShowDialog();
     }*/
-    public Difficulty()
+    static Difficulty()
     {
             DiffModPlayer(DifficultyLevel);
             DifficultyModEnemy = 2.0f - DifficultyModPlayer;

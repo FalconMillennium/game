@@ -12,7 +12,7 @@ public class Game
     public static Enemies _enemy;
     public static Actor Entity { get; set; }
     public static ulong TurnNumber { get; private set; } = 1;
-    public static int NumberCheck(int number, int rangeMin, int rangeMax)
+/*    public static int NumberCheck(int number, int rangeMin, int rangeMax)
     {
         bool isCorrect = false;
         while (!isCorrect || number < rangeMin || number > rangeMax)
@@ -25,7 +25,7 @@ public class Game
             else isCorrect = true;
         }
         return number;
-    }
+    }*/
 /*    public void RunGame()
     {
         while (IsRunning)
@@ -73,11 +73,10 @@ public class Game
         };
         return number;
     }
-    public static void AdvanceTurn(ulong TurnNumber) => Game.TurnNumber++;
-    public static void EnemyLogic(ref byte turnToken, out string response)
+    public static void AdvanceTurn() => TurnNumber++;
+    public static void EnemyLogic(ulong TurnNumber, out string response)
     {
         response = null;
-        turnToken = 2;
         Random rand = new();
         int decision = rand.Next(1, 4);
         switch(decision)
@@ -86,7 +85,6 @@ public class Game
             case 2: if (EnemyHP <= 15) { Actions EnemyHPRegen = new("RegenHP", TurnNumber, out response); break; } else goto case 1;
             case 3: if (_enemyMana <= 5) { Actions EnemyManaRegen = new("RegenMana", TurnNumber, out response); break; } else goto case 1;
         }
-        turnToken = 1;
     }
     static Game()
     {
@@ -99,6 +97,5 @@ public class Game
     }
 }
 
-//TODO: add names
 public enum Enemies {Goblin = 1, Orc, Demon, Dragon }
 public enum Actor {Player = 1, Enemy = 2 }
