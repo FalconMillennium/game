@@ -76,6 +76,46 @@ public class Game
     public static void AdvanceTurn() => TurnNumber++;
     public static void EnemyLogic(ulong TurnNumber, out string response)
     {
+    {
+        if (TurnToken % 2 == 1)
+            TurnToken = 2;
+        else TurnToken = 1;
+
+    }
+=========
+>>>>>>>>> Temporary merge branch 2
+    public static void EnemyLogic(ref byte turnToken, out string response)
+    {
+    {
+        if (TurnToken % 2 == 1)
+            TurnToken = 2;
+        else TurnToken = 1;
+
+    }
+=========
+>>>>>>>>> Temporary merge branch 2
+    public static void EnemyLogic(ref byte turnToken, out string response)
+    {
+    {
+        if (TurnToken % 2 == 1)
+            TurnToken = 2;
+        else TurnToken = 1;
+
+    }
+=========
+>>>>>>>>> Temporary merge branch 2
+    public static void EnemyLogic(ref byte turnToken, out string response)
+    {
+    {
+        if (TurnToken % 2 == 1)
+            TurnToken = 2;
+        else TurnToken = 1;
+
+    }
+=========
+>>>>>>>>> Temporary merge branch 2
+    public static void EnemyLogic(ref byte turnToken, out string response)
+    {
         response = null;
         Random rand = new();
         int decision = rand.Next(1, 4);
