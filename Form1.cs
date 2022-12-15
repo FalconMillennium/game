@@ -17,6 +17,7 @@ namespace WinFormsApp1
         }
         private void UpdateGame()
         {
+            PopUp popup = new();
             PlayerHPValue.Text = $"{Game.PlayerHP}";
             PlayerManaValue.Text = $"{Game._playerMana}";
             EnemyHPValue.Text = $"{Game.EnemyHP}";
@@ -25,15 +26,15 @@ namespace WinFormsApp1
                 PopUp popup = new();
                 if (Game.PlayerHP <= 0)
                 {
-                    popup.GameLose();
-                    popup.ShowDialog();
-                }
-                else if (Game.EnemyHP <= 0)
-                {
-                    popup.GameWin();
-                    popup.ShowDialog();
-                }
+                popup.GameLose();
+                popup.ShowDialog();
             }
+                else if (Game.EnemyHP <= 0)
+            {
+                popup.GameWin();
+                popup.ShowDialog();
+            }
+        }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -71,7 +72,6 @@ namespace WinFormsApp1
             Actions RegenMana = new("RegenMana", Game.TurnNumber, out _message);
             OutMessage.Text = _message;
     //        Game.AdvanceTurn(ref Game._turnToken);
-            Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
             EnemyResponse.Text = _enemyResponse;
             UpdateGame();
         }
