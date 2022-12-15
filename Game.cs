@@ -76,7 +76,15 @@ public class Game
     public static void AdvanceTurn(ulong TurnNumber) => Game.TurnNumber++;
     public static void EnemyLogic(ulong TurnNumber, out string response)
     {
+        if (TurnToken % 2 == 1)
+            TurnToken = 2;
+        else TurnToken = 1;
+
+    }
+    public static void EnemyLogic(ref byte turnToken, out string response)
+    {
         response = null;
+        turnToken = 2;
         Random rand = new();
         int decision = rand.Next(1, 4);
         switch(decision)
@@ -85,6 +93,7 @@ public class Game
             case 2: if (EnemyHP <= 15) { Actions EnemyHPRegen = new("RegenHP", TurnNumber, out response); break; } else goto case 1;
             case 3: if (_enemyMana <= 5) { Actions EnemyManaRegen = new("RegenMana", TurnNumber, out response); break; } else goto case 1;
         }
+        turnToken = 1;
     }
     static Game()
     {

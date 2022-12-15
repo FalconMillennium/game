@@ -57,6 +57,7 @@
     public Actions(string action, ulong _turnToken, out string message)
     {
         message = null;
+        Difficulty diff = new();
         switch (action)
         {
             case "Attack":
