@@ -39,6 +39,7 @@
             this.PlayerHPValue = new System.Windows.Forms.Label();
             this.PlayerManaValue = new System.Windows.Forms.Label();
             this.EnemyHPValue = new System.Windows.Forms.Label();
+            this.PlayerCastSpell = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // OutMessage
@@ -147,6 +148,16 @@
             this.EnemyHPValue.Size = new System.Drawing.Size(0, 23);
             this.EnemyHPValue.TabIndex = 11;
             // 
+            // PlayerCastSpell
+            // 
+            this.PlayerCastSpell.Location = new System.Drawing.Point(705, 322);
+            this.PlayerCastSpell.Name = "PlayerCastSpell";
+            this.PlayerCastSpell.Size = new System.Drawing.Size(163, 87);
+            this.PlayerCastSpell.TabIndex = 4;
+            this.PlayerCastSpell.Text = "Cast Spell";
+            this.PlayerCastSpell.UseVisualStyleBackColor = true;
+            this.PlayerCastSpell.Click += new System.EventHandler(this.PlayerCastSpell_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -159,6 +170,7 @@
             this.Controls.Add(this.EnemyHP);
             this.Controls.Add(this.PlayerMana);
             this.Controls.Add(this.PlayerHP);
+            this.Controls.Add(this.PlayerCastSpell);
             this.Controls.Add(this.PlayerRegenMana);
             this.Controls.Add(this.PlayerRegenHP);
             this.Controls.Add(this.PlayerAttack);
@@ -184,5 +196,6 @@
         public Label PlayerHPValue;
         public Label PlayerManaValue;
         public Label EnemyHPValue;
+        private Button PlayerCastSpell;
     }
 }

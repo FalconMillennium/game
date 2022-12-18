@@ -2,13 +2,13 @@
 
 public class Game
 {
-    public static int PlayerHP;
-    public static int EnemyHP; 
+    public static int _playerHP;
+    public static int _enemyHP; 
     public static int _playerMana;
     public static int _enemyMana;
-    public static int DiceSides { get; set; }
-    public static int DiceAmount { get; set; }
-    public static int DiceRoll { get; set; }
+    public static int DiceSides { get; private set; }
+    public static int DiceAmount { get; private set; }
+    public static int DiceRoll { get; private set; }
     public static Enemies _enemy;
     public static Actor Entity { get; set; }
     public static ulong TurnNumber { get; private set; } = 1;
@@ -64,7 +64,7 @@ public class Game
     }
     public static int EnemyType()
     {
-        int number = EnemyHP switch
+        int number = _enemyHP switch
         {
             < 18 => 1,
             < 27 => 2,
@@ -82,15 +82,15 @@ public class Game
         switch(decision)
         {
             case 1: Actions EnemyAttack = new("Attack", TurnNumber, out response); break;
-            case 2: if (EnemyHP <= 15) { Actions EnemyHPRegen = new("RegenHP", TurnNumber, out response); break; } else goto case 1;
+            case 2: if (_enemyHP <= 15) { Actions EnemyHPRegen = new("RegenHP", TurnNumber, out response); break; } else goto case 1;
             case 3: if (_enemyMana <= 5) { Actions EnemyManaRegen = new("RegenMana", TurnNumber, out response); break; } else goto case 1;
         }
     }
     static Game()
     {
         Difficulty diff = new();
-        PlayerHP = (int)(Math.Round(Math.Max(12, RollDice(5, 9)) * Difficulty.DifficultyModPlayer));
-        EnemyHP = (int)(Math.Round(Math.Max(12, RollDice(5, 9)) * Difficulty.DifficultyModEnemy));
+        _playerHP = (int)(Math.Round(Math.Max(12, RollDice(5, 9)) * Difficulty.DifficultyModPlayer));
+        _enemyHP = (int)(Math.Round(Math.Max(12, RollDice(5, 9)) * Difficulty.DifficultyModEnemy));
         _playerMana = (int)(Math.Round(Math.Max(4, RollDice(2, 6)) * Difficulty.DifficultyModPlayer));
         _enemyMana = (int)(Math.Round(Math.Max(4, RollDice(2, 6)) * Difficulty.DifficultyModEnemy));
         _enemy = (Enemies)EnemyType();

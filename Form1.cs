@@ -12,18 +12,18 @@ namespace WinFormsApp1
         }
         private void UpdateGame()
         {
-            PlayerHPValue.Text = $"{Game.PlayerHP}";
+            PlayerHPValue.Text = $"{Game._playerHP}";
             PlayerManaValue.Text = $"{Game._playerMana}";
-            EnemyHPValue.Text = $"{Game.EnemyHP}";
-            if (Game.PlayerHP < 0 || Game.EnemyHP < 0)
+            EnemyHPValue.Text = $"{Game._enemyHP}";
+            if (Game._playerHP <= 0 || Game._enemyHP <= 0)
             {
                 PopUp popup = new();
-                if (Game.PlayerHP <= 0)
+                if (Game._playerHP <= 0)
                 {
                 popup.GameLose();
                 popup.ShowDialog();
                }
-                else if (Game.EnemyHP <= 0)
+                else if (Game._enemyHP <= 0)
                 {
                 popup.GameWin();
                 popup.ShowDialog();
@@ -63,9 +63,22 @@ namespace WinFormsApp1
             EnemyResponse.Text = _enemyResponse;
             UpdateGame();
         }
+        private void PlayerCastSpell_Click(object sender, EventArgs e)
+        {
+            SpellWindow spells = new();
+            spells.Show();
+            if (SpellWindow.IsCast == true)
+            {
+                Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
+                EnemyResponse.Text = _enemyResponse;
+                UpdateGame();
+            }
+        }
         private void Message_Click(object sender, EventArgs e)
         {
 
         }
+
+
     }
 }

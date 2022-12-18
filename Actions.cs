@@ -59,15 +59,15 @@
         {
             case "Attack":
                 if (_turnToken % 2 == 1)
-                    Attack(ref EnemyHP, /*PlayerDamage,*/ Difficulty.DifficultyModPlayer, _turnToken, out message);
+                    Attack(ref _enemyHP, /*PlayerDamage,*/ Difficulty.DifficultyModPlayer, _turnToken, out message);
                 else
-                    Attack(ref PlayerHP, /*EnemyDamage,*/ Difficulty.DifficultyModEnemy, _turnToken, out message);
+                    Attack(ref _playerHP, /*EnemyDamage,*/ Difficulty.DifficultyModEnemy, _turnToken, out message);
                 break;
             case "RegenHP":
                 if (_turnToken % 2 == 1)
-                    Regen(ref PlayerHP, Difficulty.DifficultyModPlayer, ref _playerMana, _turnToken, out message);
+                    Regen(ref _playerHP, Difficulty.DifficultyModPlayer, ref _playerMana, _turnToken, out message);
                 else
-                    Regen(ref EnemyHP, Difficulty.DifficultyModEnemy, ref _enemyMana, _turnToken, out message);
+                    Regen(ref _enemyHP, Difficulty.DifficultyModEnemy, ref _enemyMana, _turnToken, out message);
                 break;
             case "RegenMana":
                 if (_turnToken % 2 == 1)

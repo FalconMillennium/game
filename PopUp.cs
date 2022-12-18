@@ -25,5 +25,10 @@ namespace WinFormsApp1
         {
             label1.Text = "You lose!";
         }
+
+        private void PopUp_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

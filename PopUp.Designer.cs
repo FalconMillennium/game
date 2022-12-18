@@ -49,6 +49,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PopUp";
             this.Text = "PopUp";
+            this.Load += new System.EventHandler(this.PopUp_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
