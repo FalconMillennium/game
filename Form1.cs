@@ -4,7 +4,6 @@ namespace WinFormsApp1
     {
         public string _message;
         public string _enemyResponse;
-        
         public Form1()
         {
             InitializeComponent();
@@ -15,18 +14,25 @@ namespace WinFormsApp1
             PlayerHPValue.Text = $"{Game._playerHP}";
             PlayerManaValue.Text = $"{Game._playerMana}";
             EnemyHPValue.Text = $"{Game._enemyHP}";
+            if (Spells.effects != null)
+            {
+                if (Game.TurnNumber <= Spells.effects.TargetTurn && Spells.effects.Type == StatusType.Healing)
+                {
+                    Spells.effects.Healing("Player");
+                }
+            }
             if (Game._playerHP <= 0 || Game._enemyHP <= 0)
             {
                 PopUp popup = new();
                 if (Game._playerHP <= 0)
                 {
-                popup.GameLose();
-                popup.ShowDialog();
-               }
+                    popup.GameLose();
+                    popup.ShowDialog();
+                }
                 else if (Game._enemyHP <= 0)
                 {
-                popup.GameWin();
-                popup.ShowDialog();
+                    popup.GameWin();
+                    popup.ShowDialog();
                 }
             }
         }

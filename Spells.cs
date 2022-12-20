@@ -15,6 +15,7 @@ public class Spells : StatusEffects
     public static List<int> spellPotencies = new();
     public static List<int> spellCosts = new();
     public static List<StatusType> spellTypes = new();
+    public static StatusEffects effects;
     static Spells()
     {
         foreach (SpellProperties spell in spellList)
@@ -27,7 +28,7 @@ public class Spells : StatusEffects
             spellTypes.Add(spell.Type);
         }
     }
-    public Spells(string name, ref int mana) : base() //change properties to their list index's values
+    public Spells(string name, ref int mana, string target) //change properties to their list index's values
     {
         int index = spellNames.IndexOf(name);
         ID = spellIDs[index];
@@ -37,6 +38,7 @@ public class Spells : StatusEffects
         ManaCost = spellCosts[index];
         Type = spellTypes[index];
         mana -= ManaCost;
+        effects = new(Type, Duration, Potency);
     }
     /*    public Spells()
         {

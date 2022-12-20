@@ -13,6 +13,8 @@ namespace WinFormsApp1
     public partial class SpellWindow : Form
     {
         public static bool IsCast { get; private set; } = false;
+        public static ulong Duration { get; set; }
+        public static int Potency { get; set; }
         public SpellWindow()
         {
             InitializeComponent();
@@ -31,8 +33,7 @@ namespace WinFormsApp1
         private void CastSpell_Click(object sender, EventArgs e)
         {
             IsCast = false;
-            Spells spell = new(SpellList.SelectedItem.ToString(), ref Game._playerMana);
-            StatusEffects effect = new("Player") { Duration = spell.Duration, Potency = spell.Potency };
+            Spells spell = new(SpellList.SelectedItem.ToString(), ref Game._playerMana, "Player");
             IsCast = true;
             Close();
         }
