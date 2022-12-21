@@ -16,9 +16,13 @@ namespace WinFormsApp1
             EnemyHPValue.Text = $"{Game._enemyHP}";
             if (Spells.effects != null)
             {
-                if (Game.TurnNumber <= Spells.effects.TargetTurn && Spells.effects.Type == StatusType.Healing)
+                foreach(StatusEffects effect in Spells.effects.ToList())
                 {
-                    Spells.effects.Healing("Player");
+                    switch(effect.Type)
+                    {
+                        case StatusType.Healing: effect.Healing("Player"); break;               
+                    };    
+                    if(Game.TurnNumber == effect.TargetTurn - 1) Spells.effects.Remove(effect);
                 }
             }
             if (Game._playerHP <= 0 || Game._enemyHP <= 0)

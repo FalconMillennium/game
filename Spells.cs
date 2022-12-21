@@ -15,7 +15,7 @@ public class Spells : StatusEffects
     public static List<int> spellPotencies = new();
     public static List<int> spellCosts = new();
     public static List<StatusType> spellTypes = new();
-    public static StatusEffects effects;
+    public static List<StatusEffects> effects = new();
     static Spells()
     {
         foreach (SpellProperties spell in spellList)
@@ -38,7 +38,7 @@ public class Spells : StatusEffects
         ManaCost = spellCosts[index];
         Type = spellTypes[index];
         mana -= ManaCost;
-        effects = new(Type, Duration, Potency);
+        effects.Add(new(Type, Duration, Potency));
     }
     /*    public Spells()
         {
