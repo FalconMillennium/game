@@ -42,35 +42,30 @@ namespace WinFormsApp1
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-/*            DifficultyMenu difficulty = new DifficultyMenu();
-            difficulty.ShowDialog();*/
+        }
+        private void ProcessGame()
+        {
+            OutMessage.Text = _message;
+            Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
+            EnemyResponse.Text = _enemyResponse;
         }
         private void PlayerAttack_Click(object sender, EventArgs e)
         {
             Actions Attack = new("Attack", Game.TurnNumber, out _message);
-            OutMessage.Text = _message;
-     //       Game.AdvanceTurn(ref Game._turnToken);
-            Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
-            EnemyResponse.Text = _enemyResponse;
+            ProcessGame();
             UpdateGame();
         }
 
         private void PlayerRegenHP_Click(object sender, EventArgs e)
         {
             Actions RegenHP = new("RegenHP", Game.TurnNumber, out _message);
-            OutMessage.Text = _message;
-       //     Game.AdvanceTurn(ref Game._turnToken);
-            Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
-            EnemyResponse.Text = _enemyResponse;
+            ProcessGame();
             UpdateGame();
         }
         private void PlayerRegenMana_Click(object sender, EventArgs e)
         {
             Actions RegenMana = new("RegenMana", Game.TurnNumber, out _message);
-            OutMessage.Text = _message;
-            //        Game.AdvanceTurn(ref Game._turnToken);
-            Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
-            EnemyResponse.Text = _enemyResponse;
+            ProcessGame();
             UpdateGame();
         }
         private void PlayerCastSpell_Click(object sender, EventArgs e)
@@ -79,8 +74,7 @@ namespace WinFormsApp1
             spells.Show();
             if (SpellWindow.IsCast == true)
             {
-                Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
-                EnemyResponse.Text = _enemyResponse;
+                ProcessGame();
                 UpdateGame();
             }
         }
