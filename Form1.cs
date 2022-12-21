@@ -14,17 +14,12 @@ namespace WinFormsApp1
             PlayerHPValue.Text = $"{Game._playerHP}";
             PlayerManaValue.Text = $"{Game._playerMana}";
             EnemyHPValue.Text = $"{Game._enemyHP}";
-            if (Spells.effectList != null)
+            if (Spells.effects != null)
             {
-                foreach (StatusEffects effect in Spells.effectList.ToList())
+                if (Game.TurnNumber <= Spells.effects.TargetTurn && Spells.effects.Type == StatusType.Healing)
                 {
-                    switch (effect.Type)
-                    {
-                        case StatusType.Healing:
-                        effect.Healing("Player"); break;
+                    Spells.effects.Healing("Player");
                 }
-                    if(Game.TurnNumber == effect.TargetTurn-1) Spells.effectList.Remove(effect);
-                }    
             }
             if (Game._playerHP <= 0 || Game._enemyHP <= 0)
             {
@@ -43,29 +38,36 @@ namespace WinFormsApp1
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-        }
-        private void ProcessGame()
-        {
-            OutMessage.Text = _message;
-            Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
-            EnemyResponse.Text = _enemyResponse;
-            UpdateGame();
+/*            DifficultyMenu difficulty = new DifficultyMenu();
+            difficulty.ShowDialog();*/
         }
         private void PlayerAttack_Click(object sender, EventArgs e)
         {
             Actions Attack = new("Attack", Game.TurnNumber, out _message);
-            ProcessGame();
+            OutMessage.Text = _message;
+     //       Game.AdvanceTurn(ref Game._turnToken);
+            Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
+            EnemyResponse.Text = _enemyResponse;
+            UpdateGame();
         }
 
         private void PlayerRegenHP_Click(object sender, EventArgs e)
         {
             Actions RegenHP = new("RegenHP", Game.TurnNumber, out _message);
-            ProcessGame();
+            OutMessage.Text = _message;
+       //     Game.AdvanceTurn(ref Game._turnToken);
+            Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
+            EnemyResponse.Text = _enemyResponse;
+            UpdateGame();
         }
         private void PlayerRegenMana_Click(object sender, EventArgs e)
         {
             Actions RegenMana = new("RegenMana", Game.TurnNumber, out _message);
-            ProcessGame();
+            OutMessage.Text = _message;
+            //        Game.AdvanceTurn(ref Game._turnToken);
+            Game.EnemyLogic(Game.TurnNumber, out _enemyResponse);
+            EnemyResponse.Text = _enemyResponse;
+            UpdateGame();
         }
         private void PlayerCastSpell_Click(object sender, EventArgs e)
         {
@@ -82,15 +84,6 @@ namespace WinFormsApp1
         {
 
         }
-
-
-#if DEBUG
-        private void PassTurn_Click(object sender, EventArgs e)
-        {
-            UpdateGame();
-            Game.AdvanceTurn();
-        }
-#endif
 
 
     }

@@ -40,9 +40,6 @@
             this.PlayerManaValue = new System.Windows.Forms.Label();
             this.EnemyHPValue = new System.Windows.Forms.Label();
             this.PlayerCastSpell = new System.Windows.Forms.Button();
-#if DEBUG
-            this.PassTurn = new System.Windows.Forms.Button();
-#endif
             this.SuspendLayout();
             // 
             // OutMessage
@@ -160,18 +157,6 @@
             this.PlayerCastSpell.Text = "Cast Spell";
             this.PlayerCastSpell.UseVisualStyleBackColor = true;
             this.PlayerCastSpell.Click += new System.EventHandler(this.PlayerCastSpell_Click);
-#if DEBUG
-            // 
-            // PassTurn
-            // 
-            this.PassTurn.Location = new System.Drawing.Point(225, 331);
-            this.PassTurn.Name = "PassTurn";
-            this.PassTurn.Size = new System.Drawing.Size(100, 69);
-            this.PassTurn.TabIndex = 4;
-            this.PassTurn.Text = "Pass Turn";
-            this.PassTurn.UseVisualStyleBackColor = true;
-            this.PassTurn.Click += new System.EventHandler(this.PassTurn_Click);
-#endif
             // 
             // Form1
             // 
@@ -185,9 +170,6 @@
             this.Controls.Add(this.EnemyHP);
             this.Controls.Add(this.PlayerMana);
             this.Controls.Add(this.PlayerHP);
-#if DEBUG
-            this.Controls.Add(this.PassTurn);
-#endif
             this.Controls.Add(this.PlayerCastSpell);
             this.Controls.Add(this.PlayerRegenMana);
             this.Controls.Add(this.PlayerRegenHP);
@@ -201,7 +183,7 @@
 
         }
 
-#endregion
+        #endregion
 
         public Label OutMessage;
         private Button PlayerAttack;
@@ -215,8 +197,5 @@
         public Label PlayerManaValue;
         public Label EnemyHPValue;
         private Button PlayerCastSpell;
-#if DEBUG
-        private Button PassTurn;
-#endif
     }
 }
