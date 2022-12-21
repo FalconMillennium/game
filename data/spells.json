@@ -1,0 +1,19 @@
+
+[
+  {
+	"ID": "spell_heal",
+    "Name": "Healing",
+    "Duration": 1,
+    "Potency": 10,
+    "ManaCost": 3,
+    "Type": 1
+  },
+  {
+	"ID": "spell_regen",
+    "Name": "Regeneration",
+    "Duration": 5,
+    "Potency": 4,
+    "ManaCost": 4,
+    "Type": 1
+  }
+]
