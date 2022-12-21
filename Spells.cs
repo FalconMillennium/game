@@ -15,7 +15,8 @@ public class Spells : StatusEffects
     public static List<int> spellPotencies = new();
     public static List<int> spellCosts = new();
     public static List<StatusType> spellTypes = new();
-    public static StatusEffects effects;
+    public static List<StatusEffects> effectList = new();
+    public StatusEffects effects; //TODO: add the ability to track multiple status effects (right now healing spell interrupts regeneration)
     static Spells()
     {
         foreach (SpellProperties spell in spellList)
@@ -38,7 +39,8 @@ public class Spells : StatusEffects
         ManaCost = spellCosts[index];
         Type = spellTypes[index];
         mana -= ManaCost;
-        effects = new(Type, Duration, Potency);
+       //effects = new(Type, Duration, Potency);
+        effectList.Add(new(Type, Duration, Potency));
     }
     /*    public Spells()
         {
