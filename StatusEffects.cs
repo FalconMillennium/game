@@ -42,4 +42,5 @@ what about:
     }
 }
 public enum StatusType {Healing, Damage, DamageBoost, ArmorBoost /*TODO: implement armor*/ }
-public enum Target { Player = 1, Enemy }
+public enum Target { Self, Other, Both }
+public enum EffectOrigin {Player, Enemy } //TODO: add origin-target effect handling

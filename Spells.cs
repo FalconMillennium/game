@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-//using System.Text.Json;
 public class Spells : StatusEffects
 {
     // [JsonProperty("Spells")]
@@ -15,7 +14,9 @@ public class Spells : StatusEffects
     public static List<int> spellPotencies = new();
     public static List<int> spellCosts = new();
     public static List<StatusType> spellTypes = new();
-    public static List<StatusEffects> effects = new();
+    public static List<Target> spellTargets = new();
+    public static List<StatusEffects> playerEffects = new();
+    public static List<StatusEffects> enemyEffects = new();
     static Spells()
     {
         foreach (SpellProperties spell in spellList)
@@ -26,9 +27,10 @@ public class Spells : StatusEffects
             spellPotencies.Add(spell.Potency);
             spellCosts.Add(spell.ManaCost);
             spellTypes.Add(spell.Type);
+            spellTargets.Add(spell.Target);
         }
     }
-    public Spells(string name, ref int mana, string target) //change properties to their list index's values
+    public Spells(string name, ref int mana, string origin) //change properties to their list index's values
     {
         int index = spellNames.IndexOf(name);
         ID = spellIDs[index];
@@ -38,12 +40,9 @@ public class Spells : StatusEffects
         ManaCost = spellCosts[index];
         Type = spellTypes[index];
         mana -= ManaCost;
-        effects.Add(new(Type, Duration, Potency));
+        if (origin == "Player") playerEffects.Add(new(Type, Duration, Potency));
+        else enemyEffects.Add(new(Type, Duration, Potency));
     }
-    /*    public Spells()
-        {
-
-        }*/
 }
 public struct SpellProperties
 {
@@ -59,4 +58,6 @@ public struct SpellProperties
     public int ManaCost { get; set; }
     [JsonProperty(PropertyName = "Type")]
     public StatusType Type { get; set; }
+    [JsonProperty(PropertyName = "Target")]
+    public Target Target { get; set; }
 }
